@@ -1,5 +1,5 @@
 # Hugo configuration file
-title: 何夕2077的AI资讯 | 精选AI新闻与工具 | 洞悉AI前沿动态
+title: AI 日报 v1.0.0
 
 timezone: Asia/Shanghai
 enableRobotsTXT: true
@@ -7,10 +7,6 @@ enableGitInfo: true
 enableEmoji: true
 hasCJKLanguage: true
 enableInlineShortcodes: true
-
-services:  
-  googleAnalytics:
-    ID: "G-SECWWMY8WQ"
 
 outputs:
   home: [html]
@@ -47,50 +43,24 @@ menu:
       name: AI周报
       pageRef: /blog/weekly
       weight: 2
-    - identifier: ai_nav
-      name: AI导航
-      url: https://nav.hubtoday.app/
-      weight: 3
-    - identifier: blog
-      name: 博客
-      pageRef: /blog
-      weight: 4
-    - identifier: about      
-      name: 关于我 ↗
-      url: "https://github.com/justlovemaki"
-      weight: 5
-    - identifier: github   
-      name: 同性交友
-      weight: 6
-      url: "https://github.com/justlovemaki/CloudFlare-AI-Insight-Daily"
-      params:
-        icon: github
 
 params:
-  adsenseId: "ca-pub-8136412975724403"
-  # wwgg: "388"
-  umamiKey: "2b24e36d-6e56-499b-8b7e-aea4d308caff"
-  ahrefsKey-del: "Qe0ZpZJ6/W8rgMFnLgk4kg"
-  description: 专注个人每日整理的AI资讯站。我们为您过滤全网信息噪音，只提供最精选的国内外AI新闻与大模型最新动态。除了挖掘最实用的AI办公效率工具推荐，还搭配零基础也能懂的AI落地应用实操教程。助您每天高效获取人工智能领域的前沿动态，洞悉全球人工智能最新发展趋势，快人一步打破科技信息差，轻松享受AI红利！
-  descriptionEn: Your daily source for curated AI news & latest artificial intelligence trends. Master generative AI with practical tools & actionable tutorials!
+  description: briefing-v3 自动生成的 AI 行业日报
+  descriptionEn: Auto-generated AI industry briefing by briefing-v3
   logo: "images/logo-dark.png"
-  ucloudad01: "1"
-  
+
   author:
-    name: "何夕2077的AI资讯 | 精选AI新闻与工具 | 洞悉AI前沿动态"
-    bio: "去海边整点薯条"
-    email: "justlikemaki@qq.com"
-    website: "https://ai.hubtoday.app/about/"
-    social:
-      - name: "GitHub"
-        url: "https://github.com/justlovemaki"
-        
+    name: "AI 日报 v1.0.0"
+    bio: ""
+    email: ""
+    website: ""
+    social: []
+
   publisher:
-    type: "Person" 
-    name: "何夕2077的AI资讯 | 精选AI新闻与工具 | 洞悉AI前沿动态"
-    url: "https://ai.hubtoday.app/about/"
-    sameAs:
-      - "https://github.com/justlovemaki"
+    type: "Organization"
+    name: "AI 日报 v1.0.0"
+    url: ""
+    sameAs: []
       
   displayUpdatedDate: false
   dateFormat: "2006/01/02 15:04:05"
@@ -138,17 +108,10 @@ params:
 
   comments:
     enable: false
-    type: giscus
-
-    giscus:
-      repo: justlovemaki/Hextra-AI-Insight-Daily
-      repoId: R_kgDOO_2Owg
-      category: Announcements
-      categoryId: DIC_kwDOO_2Ows4Cr2Q0
 
   floatingWidget:
     enable: true
-    url: "https://hex2077chat.hubtoday.app/"
+    url: "/chat/"
 
 defaultContentLanguage: zh
 languages:
@@ -157,8 +120,3 @@ languages:
     contentDir: content/cn
     languageName: 简体中文
     weight: 1
-  en:
-    contentDir: content/en
-    languageName: English
-    title: Hex2077's AI Daily | AI Weekly | AI News | AI Tools | AI Insights
-    weight: 2

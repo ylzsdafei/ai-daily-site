@@ -1,12 +1,3 @@
 User-agent: *
 
-# 不允许抓取 Cloudflare 的内部目录
-# Disallow: /cdn-cgi/
-
-# 新增：不允许抓取 /en 和 /ja 目录
-# Disallow: /en/
-# Disallow: /ja/
-
-# 站点地图
-Sitemap: https://ai.hubtoday.app/sitemap.xml
-Sitemap: https://ai.hubtoday.app/zh/sitemap.xml
+# v1.0.0 占位 robots.txt：上游 sitemap 链接已移除，待用户提供正式域名后补回

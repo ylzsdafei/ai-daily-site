@@ -1,21 +1,3 @@
-# Hex2077 AI Hub Today (何夕2077的AI资讯)
+# AI 日报 v1.0.0
 
-> Focus on curated daily AI news, weekly insights, and practical AI tool tutorials.
-
-AI Hub Today is a high-quality information hub for developers, researchers, and AI enthusiasts. It provides structured, precise content ideal for Large Language Models (LLMs) to ingest and process.
-
-## 📌 Main Content
-- [Daily AI News](https://ai.hubtoday.app/): Selected daily news and big model updates.
-- [AI Weekly](https://ai.hubtoday.app/blog/weekly/): In-depth weekly summaries and industry trends.
-- [AI Blog](https://ai.hubtoday.app/blog/): Practical tutorials and technical insights.
-
-## 🏷️ AI Knowledge Index (Keywords)
-Extracted core AI terms and long-tail keywords for better topical understanding:
-- [AI Keywords (Chinese)](https://ai.hubtoday.app/tags/ai_tags/): 站内 AI 核心关键词汇总。
-- [AI Keywords (English)](https://ai.hubtoday.app/en/tags/ai_tags/): Curated list of core AI terms from site content.
-
-## 🛠️ Resources
-- [About Us](https://ai.hubtoday.app/about/): Mission, vision, and content philosophy.
-- [Sitemap](https://ai.hubtoday.app/sitemap.xml): Full list of crawlable pages.
-- [Contact](https://ai.hubtoday.app/contact/): Reach out to our team.
-- [Source Code](https://github.com/justlovemaki/CloudFlare-AI-Insight-Daily): Project repository.
+> briefing-v3 自动生成的 AI 行业日报站点（v1.0.0 占位）。

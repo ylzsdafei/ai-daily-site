@@ -5,15 +5,4 @@ command = "hugo --gc --minify -b ${URL}"
 [build.environment]
 HUGO_VERSION = "0.147.9"
 
-
-[[redirects]]
-  from = "https://hextra-ai-insight-daily.netlify.app/*"
-  to = "https://ai.hubtoday.app/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://main--hextra-ai-insight-daily.netlify.app/*"
-  to = "https://ai.hubtoday.app/:splat"
-  status = 301
-  force = true
+# v1.0.0 占位：上游重定向规则已移除，v1.0.0 不走 netlify 部署
