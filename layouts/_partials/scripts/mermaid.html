@@ -124,7 +124,13 @@
     document.body.appendChild(modal);
     document.body.style.overflow = "hidden";
 
-    // Clone SVG into inner, remove fixed dimensions so it fills container.
+    // Center viewport content when smaller than viewport.
+    const vp = document.getElementById("mm-viewport");
+    const centerScroll = () => {
+      if (vp.scrollWidth > vp.clientWidth) vp.scrollLeft = (vp.scrollWidth - vp.clientWidth) / 2;
+      if (vp.scrollHeight > vp.clientHeight) vp.scrollTop = (vp.scrollHeight - vp.clientHeight) / 2;
+    };
+
     const inner = document.getElementById("mm-inner");
     const clone = svg.cloneNode(true);
     clone.removeAttribute("width");
@@ -140,8 +146,10 @@
       pct = Math.max(25, Math.min(500, Math.round(pct / 10) * 10));
       inner.style.transform = "scale(" + (pct / 100) + ")";
       input.value = pct;
+      setTimeout(centerScroll, 220);
     };
-    applyZoom(150); // default 150%
+    applyZoom(150);
+    setTimeout(centerScroll, 300);
 
     document.getElementById("mm-minus").addEventListener("click", (ev) => { ev.stopPropagation(); applyZoom(parseInt(input.value) - 10); });
     document.getElementById("mm-plus").addEventListener("click", (ev) => { ev.stopPropagation(); applyZoom(parseInt(input.value) + 10); });
@@ -198,20 +206,23 @@
 #mm-input::-webkit-outer-spin-button { -webkit-appearance: none; }
 .mm-pct { color: rgba(255,255,255,0.6); font-size: 0.8rem; padding-right: 0.25rem; }
 #mm-viewport {
-  flex: 1; overflow: auto; width: 100%; margin-top: 0.75rem;
-  display: flex; justify-content: center; align-items: flex-start;
-  touch-action: pinch-zoom;
+  flex: 1; width: 100%; margin-top: 0.75rem;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 #mm-inner {
   background: #fff; border-radius: 0.75rem; padding: 2rem;
-  max-width: 90vw; transform-origin: top center;
+  display: inline-block;
+  transform-origin: top left;
   transition: transform 0.2s;
+  min-width: min-content;
 }
 .dark #mm-inner { background: #1e293b; }
 #mm-inner svg { display: block; height: auto; }
 @media (max-width: 768px) {
-  #mm-toolbar { display: none; }
   #mm-inner { padding: 1rem; }
+  .mm-step { width: 2.5rem; height: 2.5rem; font-size: 1.3rem; }
+  #mm-input { width: 3rem; height: 2.5rem; font-size: 0.9rem; }
 }
 /* Mermaid diagram container styling */
 .mermaid {
