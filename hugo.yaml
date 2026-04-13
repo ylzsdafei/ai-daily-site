@@ -112,7 +112,7 @@ params:
 
   floatingWidget:
     enable: true
-    url: "/chat/"
+    url: "/ai-daily-site/chat/"
 
 defaultContentLanguage: zh
 languages:
