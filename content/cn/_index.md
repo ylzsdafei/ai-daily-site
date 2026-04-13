@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:inline-block;padding:0.75rem 1.5rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-weight:600;text-decoration:none;color:inherit;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -28,12 +28,20 @@ AI 日报
 ## 最近内容
 
 <!-- LATEST_6_CARDS_START -->
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/13</strong><br><small style="color:#6b7280;">谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-12/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/12</strong><br><small style="color:#6b7280;">Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-11/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/11</strong><br><small style="color:#6b7280;">Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
+<div class="briefing-card-grid">
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>苹果 AI 眼镜曝光直指 Meta，Meta再造"AI 扎克伯格"，两大巨头抢跑下一代入口</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
+
+---
+
+## 本周周报
+
+{{< cards >}}
+  {{< card link="/blog/weekly/2026-w16/" title="第16周 AI周报" subtitle="真实交付、工具接入、入口重构、基础设施" icon="document-text" >}}
+{{< /cards >}}
 
 ---
 
@@ -44,3 +52,45 @@ AI 日报
   {{< card title="深度解读" icon="translate" subtitle="用中文语境解读前沿动态，不仅是翻译，更是洞察。" >}}
   {{< card title="实战导向" icon="sparkles" subtitle="关注 AI 工具落地，发现真实的商业机会。" >}}
 {{< /cards >}}
+
+<style>
+.briefing-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.briefing-card {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.briefing-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: #3b82f6;
+}
+.briefing-card small {
+  color: #6b7280;
+}
+/* Dark mode */
+.dark .briefing-card {
+  border-color: #374151;
+}
+.dark .briefing-card:hover {
+  border-color: #60a5fa;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.dark .briefing-card small {
+  color: #9ca3af;
+}
+/* Mobile: 1 column */
+@media (max-width: 768px) {
+  .briefing-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
