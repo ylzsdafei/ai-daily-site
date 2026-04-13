@@ -102,6 +102,21 @@
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   });
 
+  // Auto-number details buttons + toggle text on open/close.
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("article details").forEach((el, i) => {
+      const n = i + 1;
+      const summary = el.querySelector("summary");
+      if (!summary) return;
+      summary.textContent = "▶ 展开详细图谱 " + n;
+      el.addEventListener("toggle", () => {
+        summary.textContent = el.open
+          ? "▼ 收起详细图谱 " + n
+          : "▶ 展开详细图谱 " + n;
+      });
+    });
+  });
+
 </script>
 
 <style>
