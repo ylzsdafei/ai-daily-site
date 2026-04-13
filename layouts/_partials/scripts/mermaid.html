@@ -155,21 +155,28 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 0.9rem;
-  color: #3b82f6;
-  background: #f8fafc;
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   user-select: none;
   list-style: none;
+  border-radius: 0.375rem;
+  transition: opacity 0.2s;
+}
+.hextra-content details summary:hover {
+  opacity: 0.9;
 }
 .hextra-content details summary::before {
   content: "▶ ";
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 .hextra-content details[open] summary::before {
   content: "▼ ";
 }
+.hextra-content details[open] summary {
+  border-radius: 0.375rem 0.375rem 0 0;
+}
 .dark .hextra-content details summary {
-  color: #60a5fa;
-  background: #1e293b;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
 }
 .hextra-content details[open] summary {
   border-bottom: 1px solid #e2e8f0;
