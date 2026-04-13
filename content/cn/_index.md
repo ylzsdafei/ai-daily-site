@@ -29,9 +29,9 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>PwC称AI收益四分之三被20%公司拿走，贝恩再曝42%CFO两年内加码30%+投资 rtk号称把LLM Token消耗压缩60%到90%，LangChain开...</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic改写增长故事 xAI 起诉科罗拉多州硬刚 A...</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界，3D 生产门槛被改写 星巴克推进门店 AI 聊...</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>Meta 造出“AI 版扎克伯格”直接下场管员工，Anthropic Mythos 被推入银行测试</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
