@@ -20,13 +20,14 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; backgro
 .msg.bot code { background: #f1f5f9; padding: 0.1rem 0.3rem; border-radius: 0.2rem; font-size: 0.85em; }
 .msg.bot a { color: #3b82f6; }
 .msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-radius: 1rem 1rem 0.25rem 1rem; }
-.msg.typing { color: #94a3b8; font-style: italic; }
 #input-area { padding: 0.75rem; background: #fff; border-top: 1px solid #e2e8f0; display: flex; gap: 0.5rem; }
 #input { flex: 1; padding: 0.6rem 1rem; border: 1px solid #e2e8f0; border-radius: 1.5rem; font-size: 0.9rem; outline: none; }
 #input:focus { border-color: #3b82f6; }
 #send { padding: 0.6rem 1.25rem; background: #3b82f6; color: #fff; border: none; border-radius: 1.5rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
 #send:hover { background: #2563eb; }
 #send:disabled { background: #94a3b8; cursor: not-allowed; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+.cursor { display: inline-block; width: 2px; height: 1em; background: #3b82f6; margin-left: 2px; vertical-align: text-bottom; animation: blink 0.8s infinite; }
 body.dark { background: #0f172a; }
 body.dark #header { background: #1e293b; border-color: #334155; color: #e2e8f0; }
 body.dark .msg.bot { background: #1e293b; border-color: #334155; color: #e2e8f0; }
@@ -51,14 +52,9 @@ const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 const history = [];
 
-function addMsg(content, cls, isMarkdown) {
+function createMsg(cls) {
   const d = document.createElement("div");
   d.className = "msg " + cls;
-  if (isMarkdown) {
-    d.innerHTML = marked.parse(content);
-  } else {
-    d.textContent = content;
-  }
   msgEl.appendChild(d);
   msgEl.scrollTop = msgEl.scrollHeight;
   return d;
@@ -68,25 +64,62 @@ async function doSend() {
   const text = input.value.trim();
   if (!text) return;
   input.value = "";
-  addMsg(text, "user", false);
+
+  // User message.
+  const userMsg = createMsg("user");
+  userMsg.textContent = text;
   history.push({ role: "user", content: text });
+
   sendBtn.disabled = true;
-  const typing = addMsg("正在思考...", "bot typing", false);
+
+  // Bot message — stream into it.
+  const botMsg = createMsg("bot");
+  botMsg.innerHTML = '<span class="cursor"></span>';
+  let fullText = "";
+
   try {
     const res = await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: history })
     });
-    const data = await res.json();
-    const reply = data.reply || "抱歉，暂时无法回答。";
-    typing.remove();
-    addMsg(reply, "bot", true);
-    history.push({ role: "assistant", content: reply });
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buffer = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split("\n");
+      buffer = lines.pop(); // keep incomplete line
+
+      for (const line of lines) {
+        if (!line.startsWith("data: ")) continue;
+        const data = line.slice(6).trim();
+        if (data === "[DONE]") continue;
+        try {
+          const json = JSON.parse(data);
+          const token = json.response || json.choices?.[0]?.delta?.content || "";
+          if (token) {
+            fullText += token;
+            botMsg.innerHTML = marked.parse(fullText) + '<span class="cursor"></span>';
+            msgEl.scrollTop = msgEl.scrollHeight;
+          }
+        } catch(e) { /* skip unparseable */ }
+      }
+    }
+
+    // Final render without cursor.
+    botMsg.innerHTML = marked.parse(fullText || "抱歉，暂时无法回答。");
+    history.push({ role: "assistant", content: fullText });
+
   } catch(e) {
-    typing.remove();
-    addMsg("网络错误，请稍后重试。", "bot", false);
+    botMsg.innerHTML = "网络错误，请稍后重试。";
   }
+
   sendBtn.disabled = false;
   input.focus();
 }
