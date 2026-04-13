@@ -111,7 +111,7 @@ params:
     enable: false
 
   floatingWidget:
-    enable: true
+    enable: false
     url: "/chat/"
 
 defaultContentLanguage: zh
