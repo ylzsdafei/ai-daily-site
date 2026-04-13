@@ -6,17 +6,99 @@
 <title>AI 日报 · 智能问答</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
-.icon { font-size: 3rem; margin-bottom: 1rem; }
-h2 { font-size: 1.2rem; color: #1e293b; margin-bottom: 0.75rem; }
-p { font-size: 0.9rem; color: #64748b; line-height: 1.6; max-width: 280px; }
-.badge { display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem; background: #dbeafe; color: #1e40af; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; }
+body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; }
+#header { padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.95rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; }
+#header span { color: #3b82f6; }
+#messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.msg { max-width: 85%; padding: 0.75rem 1rem; border-radius: 1rem; font-size: 0.9rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap; }
+.msg.bot { align-self: flex-start; background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem 1rem 1rem 0.25rem; }
+.msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-radius: 1rem 1rem 0.25rem 1rem; }
+.msg.typing { color: #94a3b8; font-style: italic; }
+#input-area { padding: 0.75rem; background: #fff; border-top: 1px solid #e2e8f0; display: flex; gap: 0.5rem; }
+#input { flex: 1; padding: 0.6rem 1rem; border: 1px solid #e2e8f0; border-radius: 1.5rem; font-size: 0.9rem; outline: none; }
+#input:focus { border-color: #3b82f6; }
+#send { padding: 0.6rem 1.25rem; background: #3b82f6; color: #fff; border: none; border-radius: 1.5rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; }
+#send:hover { background: #2563eb; }
+#send:disabled { background: #94a3b8; cursor: not-allowed; }
+body.dark { background: #0f172a; }
+body.dark #header { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+body.dark .msg.bot { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+body.dark #input-area { background: #1e293b; border-color: #334155; }
+body.dark #input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 </style>
 </head>
 <body>
-<div class="icon">🤖</div>
-<h2>智能问答即将上线</h2>
-<p>AI 日报智能助手正在开发中，上线后可基于日报/周报内容和实时信息为你解答问题。</p>
-<span class="badge">预计 v1.0.2 上线</span>
+<div id="header"><span>🤖</span> AI 日报 · 智能问答</div>
+<div id="messages">
+  <div class="msg bot">你好！我是 AI 日报助手，基于每日日报内容为你解答问题。试试问我"今天有什么重要的 AI 新闻？"</div>
+</div>
+<div id="input-area">
+  <input id="input" type="text" placeholder="输入你的问题..." autocomplete="off">
+  <button id="send">发送</button>
+</div>
+<script>
+const API = "http://69.63.221.139:8080/api/chat";
+const msgEl = document.getElementById("messages");
+const input = document.getElementById("input");
+const send = document.getElementById("send");
+const history = [];
+
+// Try to get current issue date from parent page URL.
+let issueDate = "";
+try {
+  const ru = new URLSearchParams(window.location.search).get("ru") || document.referrer || "";
+  const m = ru.match(/(\d{4}-\d{2}-\d{2})/);
+  if (m) issueDate = m[1];
+} catch(e) {}
+// Fallback to today.
+if (!issueDate) {
+  const d = new Date();
+  issueDate = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+}
+
+function addMsg(text, cls) {
+  const d = document.createElement("div");
+  d.className = "msg " + cls;
+  d.textContent = text;
+  msgEl.appendChild(d);
+  msgEl.scrollTop = msgEl.scrollHeight;
+  return d;
+}
+
+async function doSend() {
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = "";
+  addMsg(text, "user");
+  history.push({ role: "user", content: text });
+  send.disabled = true;
+  const typing = addMsg("正在思考...", "bot typing");
+  try {
+    const res = await fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ issue_date: issueDate, messages: history })
+    });
+    const data = await res.json();
+    const reply = data.reply || data.error || "抱歉，暂时无法回答。";
+    typing.remove();
+    // Simple markdown: **bold** → bold, ### header → header
+    const clean = reply.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#{1,3}\s+/gm, "");
+    addMsg(clean, "bot");
+    history.push({ role: "assistant", content: reply });
+  } catch(e) {
+    typing.remove();
+    addMsg("网络错误，请稍后重试。", "bot");
+  }
+  send.disabled = false;
+  input.focus();
+}
+
+send.addEventListener("click", doSend);
+input.addEventListener("keydown", (e) => { if (e.key === "Enter") doSend(); });
+input.focus();
+
+if (new URLSearchParams(window.location.search).get("theme") === "dark") document.body.classList.add("dark");
+</script>
 </body>
 </html>
