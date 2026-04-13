@@ -17,11 +17,11 @@ AI 日报
   {{< hextra/hero-badge >}}21 个信息源 · LLM 精选{{< /hextra/hero-badge >}}
 </div>
 
-<div style="text-align: center; margin-bottom: 3rem;">
 <!-- TODAY_LINK_START -->
-<a href="/2026/2026-04/2026-04-13/" class="hx-inline-block hx-rounded-lg hx-border hx-border-gray-200 hx-px-6 hx-py-3 hx-font-semibold hx-text-gray-700 hover:hx-bg-gray-100 dark:hx-border-neutral-700 dark:hx-text-neutral-300 dark:hover:hx-bg-neutral-800">查看今日早报 →</a>
+{{< cards >}}
+  {{< card link="/2026/2026-04/2026-04-13/" title="查看今日早报 →" icon="arrow-circle-right" >}}
+{{< /cards >}}
 <!-- TODAY_LINK_END -->
-</div>
 
 ---
 
