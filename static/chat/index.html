@@ -30,31 +30,18 @@ body.dark #input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 <body>
 <div id="header"><span>🤖</span> AI 日报 · 智能问答</div>
 <div id="messages">
-  <div class="msg bot">你好！我是 AI 日报助手，基于每日日报内容为你解答问题。试试问我"今天有什么重要的 AI 新闻？"</div>
+  <div class="msg bot">你好！我是 AI 日报助手，可以回答关于 AI 行业的问题。试试问我"今天有什么重要的AI新闻？"</div>
 </div>
 <div id="input-area">
   <input id="input" type="text" placeholder="输入你的问题..." autocomplete="off">
   <button id="send">发送</button>
 </div>
 <script>
-const API = "http://69.63.221.139:8080/api/chat";
+const API = "https://briefing-chat-proxy.odd-moon-8b62.workers.dev";
 const msgEl = document.getElementById("messages");
 const input = document.getElementById("input");
-const send = document.getElementById("send");
+const sendBtn = document.getElementById("send");
 const history = [];
-
-// Try to get current issue date from parent page URL.
-let issueDate = "";
-try {
-  const ru = new URLSearchParams(window.location.search).get("ru") || document.referrer || "";
-  const m = ru.match(/(\d{4}-\d{2}-\d{2})/);
-  if (m) issueDate = m[1];
-} catch(e) {}
-// Fallback to today.
-if (!issueDate) {
-  const d = new Date();
-  issueDate = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-}
 
 function addMsg(text, cls) {
   const d = document.createElement("div");
@@ -71,18 +58,17 @@ async function doSend() {
   input.value = "";
   addMsg(text, "user");
   history.push({ role: "user", content: text });
-  send.disabled = true;
+  sendBtn.disabled = true;
   const typing = addMsg("正在思考...", "bot typing");
   try {
     const res = await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ issue_date: issueDate, messages: history })
+      body: JSON.stringify({ messages: history })
     });
     const data = await res.json();
-    const reply = data.reply || data.error || "抱歉，暂时无法回答。";
+    const reply = data.reply || "抱歉，暂时无法回答。";
     typing.remove();
-    // Simple markdown: **bold** → bold, ### header → header
     const clean = reply.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#{1,3}\s+/gm, "");
     addMsg(clean, "bot");
     history.push({ role: "assistant", content: reply });
@@ -90,14 +76,13 @@ async function doSend() {
     typing.remove();
     addMsg("网络错误，请稍后重试。", "bot");
   }
-  send.disabled = false;
+  sendBtn.disabled = false;
   input.focus();
 }
 
-send.addEventListener("click", doSend);
+sendBtn.addEventListener("click", doSend);
 input.addEventListener("keydown", (e) => { if (e.key === "Enter") doSend(); });
 input.focus();
-
 if (new URLSearchParams(window.location.search).get("theme") === "dark") document.body.classList.add("dark");
 </script>
 </body>
