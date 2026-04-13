@@ -101,9 +101,28 @@
       }, 150);
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   });
+
+  // Click to toggle zoom on mermaid diagrams.
+  document.addEventListener("click", (e) => {
+    const el = e.target.closest(".mermaid");
+    if (!el) return;
+    el.classList.toggle("zoomed");
+  });
 </script>
 
 <style>
+/* Click to zoom */
+.mermaid {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+.mermaid.zoomed {
+  transform: scale(2);
+  transform-origin: top left;
+  cursor: zoom-out;
+  z-index: 10;
+  position: relative;
+}
 /* Mermaid diagram container styling */
 .mermaid {
   margin: 1.5rem 0;
