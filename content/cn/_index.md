@@ -18,9 +18,9 @@ AI 日报
 </div>
 
 <!-- TODAY_LINK_START -->
-{{< cards >}}
-  {{< card link="/2026/2026-04/2026-04-13/" title="查看今日早报 →" icon="arrow-circle-right" >}}
-{{< /cards >}}
+<div style="text-align:center;margin-bottom:2rem;">
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:inline-block;padding:0.75rem 1.5rem;border:1px solid #e5e7eb;border-radius:0.5rem;font-weight:600;text-decoration:none;color:inherit;">查看今日早报 →</a>
+</div>
 <!-- TODAY_LINK_END -->
 
 ---
@@ -28,11 +28,11 @@ AI 日报
 ## 最近内容
 
 <!-- LATEST_6_CARDS_START -->
-{{< cards cols="3" >}}
-  {{< card link="/2026/2026-04/2026-04-13/" title="AI资讯日报 2026/4/13" subtitle="谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭 台积电或连四季利润新高，AI需求旺到爆，MiniMax-M2.7双RTX..." >}}
-  {{< card link="/2026/2026-04/2026-04-12/" title="AI资讯日报 2026/4/12" subtitle="Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic改写增长故事 xAI 起诉科罗拉多州硬刚 A..." >}}
-  {{< card link="/2026/2026-04/2026-04-11/" title="AI资讯日报 2026/4/11" subtitle="Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界，3D 生产门槛被改写 星巴克推进门店 AI 聊..." >}}
-{{< /cards >}}
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/13</strong><br><small style="color:#6b7280;">谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-12/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/12</strong><br><small style="color:#6b7280;">Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-11/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/11</strong><br><small style="color:#6b7280;">Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
+</div>
 <!-- LATEST_6_CARDS_END -->
 
 ---
