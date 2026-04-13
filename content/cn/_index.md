@@ -28,7 +28,7 @@ AI 日报
 ## 最近内容
 
 <!-- LATEST_6_CARDS_START -->
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem;">
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem;">
 <a href="/ai-daily-site/2026/2026-04/2026-04-13/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/13</strong><br><small style="color:#6b7280;">谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-12/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/12</strong><br><small style="color:#6b7280;">Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-11/" style="display:block;padding:1rem;border:1px solid #e5e7eb;border-radius:0.5rem;text-decoration:none;color:inherit;"><strong>AI资讯日报 2026/4/11</strong><br><small style="color:#6b7280;">Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
