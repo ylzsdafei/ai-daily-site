@@ -102,54 +102,56 @@
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   });
 
-  // Click mermaid → fullscreen modal with zoom controls.
+  // Click mermaid → fullscreen modal.
   document.addEventListener("click", (e) => {
     const el = e.target.closest(".mermaid");
     if (!el || document.getElementById("mermaid-modal")) return;
-
     const svg = el.querySelector("svg");
     if (!svg) return;
 
     const modal = document.createElement("div");
     modal.id = "mermaid-modal";
+    modal.innerHTML = `
+      <button id="mm-close">✕ 关闭</button>
+      <div id="mm-toolbar">
+        <button class="mm-btn" data-z="50">50%</button>
+        <button class="mm-btn" data-z="75">75%</button>
+        <button class="mm-btn active" data-z="100">100%</button>
+        <button class="mm-btn" data-z="150">150%</button>
+        <button class="mm-btn" data-z="200">200%</button>
+      </div>
+      <div id="mm-viewport"><div id="mm-inner"></div></div>
+    `;
+    document.body.appendChild(modal);
+    document.body.style.overflow = "hidden";
 
-    // Close button
-    const closeBtn = document.createElement("button");
-    closeBtn.id = "mermaid-modal-close";
-    closeBtn.textContent = "✕";
-    closeBtn.onclick = () => modal.remove();
+    // Clone SVG into inner, remove fixed dimensions so it fills container.
+    const inner = document.getElementById("mm-inner");
+    const clone = svg.cloneNode(true);
+    clone.removeAttribute("width");
+    clone.removeAttribute("height");
+    clone.removeAttribute("style");
+    clone.style.width = "100%";
+    clone.style.height = "auto";
+    inner.appendChild(clone);
 
-    // Zoom controls (PC)
-    const controls = document.createElement("div");
-    controls.id = "mermaid-modal-controls";
+    // Zoom buttons.
     let scale = 1;
-    const container = document.createElement("div");
-    container.id = "mermaid-modal-content";
-    const cloned = svg.cloneNode(true);
-    cloned.style.width = "100%";
-    cloned.style.height = "auto";
-    cloned.style.maxWidth = "none";
-    container.appendChild(cloned);
-
-    const updateScale = () => { cloned.style.transform = "scale(" + scale + ")"; cloned.style.transformOrigin = "center top"; };
-    [50, 75, 100, 150, 200].forEach(pct => {
-      const btn = document.createElement("button");
-      btn.className = "mermaid-zoom-btn" + (pct === 100 ? " active" : "");
-      btn.textContent = pct + "%";
-      btn.onclick = (ev) => { ev.stopPropagation(); scale = pct / 100; updateScale(); controls.querySelectorAll(".mermaid-zoom-btn").forEach(b => b.classList.remove("active")); btn.classList.add("active"); };
-      controls.appendChild(btn);
+    modal.querySelectorAll(".mm-btn").forEach(btn => {
+      btn.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        scale = parseInt(btn.dataset.z) / 100;
+        inner.style.transform = "scale(" + scale + ")";
+        modal.querySelectorAll(".mm-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
     });
 
-    // Mobile: pinch zoom via touch-action
-    container.style.touchAction = "pinch-zoom";
-
-    modal.appendChild(closeBtn);
-    modal.appendChild(controls);
-    modal.appendChild(container);
-    document.body.appendChild(modal);
-
-    // Click backdrop to close
-    modal.addEventListener("click", (ev) => { if (ev.target === modal) modal.remove(); });
+    // Close.
+    const close = () => { modal.remove(); document.body.style.overflow = ""; };
+    document.getElementById("mm-close").addEventListener("click", close);
+    modal.addEventListener("click", (ev) => { if (ev.target === modal) close(); });
+    document.addEventListener("keydown", function esc(ev) { if (ev.key === "Escape") { close(); document.removeEventListener("keydown", esc); } });
   });
 </script>
 
@@ -158,36 +160,43 @@
 .mermaid { cursor: zoom-in; }
 #mermaid-modal {
   position: fixed; inset: 0; z-index: 9999;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
   display: flex; flex-direction: column;
-  align-items: center; justify-content: flex-start;
-  padding: 1rem;
+  align-items: center;
 }
-#mermaid-modal-close {
-  position: absolute; top: 1rem; right: 1.5rem;
-  font-size: 1.5rem; color: #fff; background: none;
-  border: none; cursor: pointer; z-index: 10;
+#mm-close {
+  position: absolute; top: 0.75rem; right: 1rem;
+  font-size: 0.95rem; color: #fff; background: rgba(255,255,255,0.15);
+  border: none; border-radius: 0.25rem; padding: 0.4rem 0.8rem;
+  cursor: pointer; z-index: 10;
 }
-#mermaid-modal-controls {
-  display: flex; gap: 0.5rem; margin: 0.5rem 0 1rem;
+#mm-close:hover { background: rgba(255,255,255,0.3); }
+#mm-toolbar {
+  display: flex; gap: 0.4rem; margin-top: 0.75rem; z-index: 10;
 }
-.mermaid-zoom-btn {
-  padding: 0.35rem 0.75rem; font-size: 0.8rem;
-  border: 1px solid #64748b; border-radius: 0.25rem;
+.mm-btn {
+  padding: 0.3rem 0.7rem; font-size: 0.8rem; font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 0.25rem;
   background: transparent; color: #fff; cursor: pointer;
+  transition: all 0.15s;
 }
-.mermaid-zoom-btn.active {
-  background: #3b82f6; border-color: #3b82f6;
+.mm-btn:hover { background: rgba(255,255,255,0.15); }
+.mm-btn.active { background: #3b82f6; border-color: #3b82f6; }
+#mm-viewport {
+  flex: 1; overflow: auto; width: 100%; margin-top: 0.75rem;
+  display: flex; justify-content: center; align-items: flex-start;
+  touch-action: pinch-zoom;
 }
-#mermaid-modal-content {
-  flex: 1; overflow: auto; width: 100%;
-  display: flex; justify-content: center;
-  background: #fff; border-radius: 0.75rem; padding: 1.5rem;
+#mm-inner {
+  background: #fff; border-radius: 0.75rem; padding: 2rem;
+  min-width: 80vw; transform-origin: top center;
+  transition: transform 0.2s;
 }
-.dark #mermaid-modal-content { background: #1e293b; }
-#mermaid-modal-content svg { transition: transform 0.2s; }
+.dark #mm-inner { background: #1e293b; }
+#mm-inner svg { display: block; width: 100%; height: auto; }
 @media (max-width: 768px) {
-  #mermaid-modal-controls { display: none; }
+  #mm-toolbar { display: none; }
+  #mm-inner { min-width: 95vw; padding: 1rem; }
 }
 /* Mermaid diagram container styling */
 .mermaid {
