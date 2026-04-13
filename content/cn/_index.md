@@ -3,7 +3,7 @@ linkTitle: ""
 title: ""
 breadcrumbs: false
 comments: false
-description: "每天 8:30，全网 AI 资讯自动聚合"
+description: "每天 8:00，全网 AI 资讯自动聚合"
 cascade:
   type: docs
 ---
@@ -13,7 +13,7 @@ AI 日报
 {{< /hextra/hero-headline >}}
 
 <div style="margin-top: 1rem; margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-  {{< hextra/hero-badge >}}每天 8:30 自动更新{{< /hextra/hero-badge >}}
+  {{< hextra/hero-badge >}}每天 8:00 自动更新{{< /hextra/hero-badge >}}
   {{< hextra/hero-badge >}}21 个信息源 · LLM 精选{{< /hextra/hero-badge >}}
 </div>
 
@@ -29,9 +29,9 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>苹果 AI 眼镜曝光直指 Meta，Meta再造"AI 扎克伯格"，两大巨头抢跑下一代入口</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>PwC称AI收益四分之三被20%公司拿走，贝恩再曝42%CFO两年内加码30%+投资 rtk号称把LLM Token消耗压缩60%到90%，LangChain开...</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic改写增长故事 xAI 起诉科罗拉多州硬刚 A...</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界，3D 生产门槛被改写 星巴克推进门店 AI 聊...</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
