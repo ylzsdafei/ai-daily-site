@@ -1,0 +1,143 @@
+{{- /* Custom Mermaid with professional theme */ -}}
+{{- $mermaidBase := "https://cdn.jsdelivr.net/npm/mermaid@latest/dist" -}}
+{{- $minSuffix := cond hugo.IsProduction ".min" "" -}}
+{{- $jsPath := printf "mermaid%s.js" $minSuffix -}}
+{{- $mermaidJsUrl := urls.JoinPath $mermaidBase $jsPath -}}
+{{- with try (resources.GetRemote $mermaidJsUrl) -}}
+  {{- with .Err -}}
+    {{- errorf "Could not retrieve Mermaid js: %s" . -}}
+  {{- else with .Value -}}
+    {{- with resources.Copy (printf "js/mermaid%s.js" $minSuffix) . -}}
+      {{- $mermaidJs := . | fingerprint -}}
+      <script defer src="{{ $mermaidJs.RelPermalink }}" integrity="{{ $mermaidJs.Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".mermaid").forEach((el) => {
+      el.dataset.original = el.innerHTML;
+    });
+
+    const isDark = document.documentElement.classList.contains("dark");
+    const mermaidTheme = {
+      startOnLoad: true,
+      theme: "base",
+      themeVariables: isDark ? {
+        // Dark mode
+        primaryColor: "#1e3a5f",
+        primaryTextColor: "#e2e8f0",
+        primaryBorderColor: "#3b82f6",
+        secondaryColor: "#2d1f0e",
+        secondaryTextColor: "#fde68a",
+        secondaryBorderColor: "#f59e0b",
+        tertiaryColor: "#0f2922",
+        tertiaryTextColor: "#a7f3d0",
+        tertiaryBorderColor: "#10b981",
+        lineColor: "#64748b",
+        textColor: "#cbd5e1",
+        mainBkg: "#1e293b",
+        nodeBorder: "#475569",
+        clusterBkg: "#0f172a",
+        clusterBorder: "#334155",
+        titleColor: "#f1f5f9",
+        edgeLabelBackground: "#1e293b",
+        fontSize: "14px",
+        fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
+      } : {
+        // Light mode
+        primaryColor: "#dbeafe",
+        primaryTextColor: "#1e3a5f",
+        primaryBorderColor: "#3b82f6",
+        secondaryColor: "#fef3c7",
+        secondaryTextColor: "#78350f",
+        secondaryBorderColor: "#f59e0b",
+        tertiaryColor: "#d1fae5",
+        tertiaryTextColor: "#064e3b",
+        tertiaryBorderColor: "#10b981",
+        lineColor: "#94a3b8",
+        textColor: "#334155",
+        mainBkg: "#f8fafc",
+        nodeBorder: "#cbd5e1",
+        clusterBkg: "#f1f5f9",
+        clusterBorder: "#e2e8f0",
+        titleColor: "#1e293b",
+        edgeLabelBackground: "#ffffff",
+        fontSize: "14px",
+        fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
+      }
+    };
+    mermaid.initialize(mermaidTheme);
+
+    let timeout;
+    new MutationObserver(() => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        const nowDark = document.documentElement.classList.contains("dark");
+        mermaidTheme.themeVariables = nowDark ? {
+          primaryColor: "#1e3a5f", primaryTextColor: "#e2e8f0", primaryBorderColor: "#3b82f6",
+          secondaryColor: "#2d1f0e", secondaryTextColor: "#fde68a", secondaryBorderColor: "#f59e0b",
+          tertiaryColor: "#0f2922", tertiaryTextColor: "#a7f3d0", tertiaryBorderColor: "#10b981",
+          lineColor: "#64748b", textColor: "#cbd5e1", mainBkg: "#1e293b", nodeBorder: "#475569",
+          clusterBkg: "#0f172a", clusterBorder: "#334155", titleColor: "#f1f5f9",
+          edgeLabelBackground: "#1e293b", fontSize: "14px",
+          fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
+        } : {
+          primaryColor: "#dbeafe", primaryTextColor: "#1e3a5f", primaryBorderColor: "#3b82f6",
+          secondaryColor: "#fef3c7", secondaryTextColor: "#78350f", secondaryBorderColor: "#f59e0b",
+          tertiaryColor: "#d1fae5", tertiaryTextColor: "#064e3b", tertiaryBorderColor: "#10b981",
+          lineColor: "#94a3b8", textColor: "#334155", mainBkg: "#f8fafc", nodeBorder: "#cbd5e1",
+          clusterBkg: "#f1f5f9", clusterBorder: "#e2e8f0", titleColor: "#1e293b",
+          edgeLabelBackground: "#ffffff", fontSize: "14px",
+          fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
+        };
+        document.querySelectorAll(".mermaid").forEach((el) => {
+          el.innerHTML = el.dataset.original;
+          el.removeAttribute("data-processed");
+        });
+        mermaid.initialize(mermaidTheme);
+        mermaid.init();
+      }, 150);
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+  });
+</script>
+
+<style>
+/* Mermaid diagram container styling */
+.mermaid {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  overflow-x: auto;
+}
+.dark .mermaid {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-color: #334155;
+}
+/* Mermaid SVG text — better font rendering */
+.mermaid svg {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  max-width: 100%;
+  height: auto;
+}
+/* Subgraph titles */
+.mermaid .cluster-label span {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+}
+/* Edge labels */
+.mermaid .edgeLabel {
+  font-size: 12px !important;
+  background: transparent !important;
+}
+/* Mindmap nodes */
+.mermaid .mindmap-node rect,
+.mermaid .mindmap-node circle,
+.mermaid .mindmap-node polygon {
+  rx: 8;
+  ry: 8;
+}
+</style>
