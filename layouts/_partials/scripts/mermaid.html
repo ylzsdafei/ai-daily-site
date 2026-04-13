@@ -20,35 +20,15 @@
       el.dataset.original = el.innerHTML;
     });
 
-    const isDark = document.documentElement.classList.contains("dark");
+    // Always use light theme for Mermaid — diagrams have their own
+    // container background, and light theme ensures text is always
+    // dark and visible regardless of page dark/light mode.
     const mermaidTheme = {
       startOnLoad: true,
       theme: "base",
-      themeVariables: isDark ? {
-        // Dark mode
-        primaryColor: "#1e3a5f",
-        primaryTextColor: "#e2e8f0",
-        primaryBorderColor: "#3b82f6",
-        secondaryColor: "#2d1f0e",
-        secondaryTextColor: "#fde68a",
-        secondaryBorderColor: "#f59e0b",
-        tertiaryColor: "#0f2922",
-        tertiaryTextColor: "#a7f3d0",
-        tertiaryBorderColor: "#10b981",
-        lineColor: "#64748b",
-        textColor: "#cbd5e1",
-        mainBkg: "#1e293b",
-        nodeBorder: "#475569",
-        clusterBkg: "#0f172a",
-        clusterBorder: "#334155",
-        titleColor: "#f1f5f9",
-        edgeLabelBackground: "#1e293b",
-        fontSize: "14px",
-        fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
-      } : {
-        // Light mode
+      themeVariables: {
         primaryColor: "#dbeafe",
-        primaryTextColor: "#1e3a5f",
+        primaryTextColor: "#1e293b",
         primaryBorderColor: "#3b82f6",
         secondaryColor: "#fef3c7",
         secondaryTextColor: "#78350f",
@@ -70,36 +50,7 @@
     };
     mermaid.initialize(mermaidTheme);
 
-    let timeout;
-    new MutationObserver(() => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        const nowDark = document.documentElement.classList.contains("dark");
-        mermaidTheme.themeVariables = nowDark ? {
-          primaryColor: "#1e3a5f", primaryTextColor: "#e2e8f0", primaryBorderColor: "#3b82f6",
-          secondaryColor: "#2d1f0e", secondaryTextColor: "#fde68a", secondaryBorderColor: "#f59e0b",
-          tertiaryColor: "#0f2922", tertiaryTextColor: "#a7f3d0", tertiaryBorderColor: "#10b981",
-          lineColor: "#64748b", textColor: "#cbd5e1", mainBkg: "#1e293b", nodeBorder: "#475569",
-          clusterBkg: "#0f172a", clusterBorder: "#334155", titleColor: "#f1f5f9",
-          edgeLabelBackground: "#1e293b", fontSize: "14px",
-          fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
-        } : {
-          primaryColor: "#dbeafe", primaryTextColor: "#1e3a5f", primaryBorderColor: "#3b82f6",
-          secondaryColor: "#fef3c7", secondaryTextColor: "#78350f", secondaryBorderColor: "#f59e0b",
-          tertiaryColor: "#d1fae5", tertiaryTextColor: "#064e3b", tertiaryBorderColor: "#10b981",
-          lineColor: "#94a3b8", textColor: "#334155", mainBkg: "#f8fafc", nodeBorder: "#cbd5e1",
-          clusterBkg: "#f1f5f9", clusterBorder: "#e2e8f0", titleColor: "#1e293b",
-          edgeLabelBackground: "#ffffff", fontSize: "14px",
-          fontFamily: "ui-sans-serif, system-ui, -apple-system, sans-serif"
-        };
-        document.querySelectorAll(".mermaid").forEach((el) => {
-          el.innerHTML = el.dataset.original;
-          el.removeAttribute("data-processed");
-        });
-        mermaid.initialize(mermaidTheme);
-        mermaid.init();
-      }, 150);
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    // No dark/light observer needed — Mermaid always uses light theme.
   });
 
   // Auto-number details buttons + toggle text on open/close.
