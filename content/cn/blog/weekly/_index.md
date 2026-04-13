@@ -7,6 +7,7 @@ sidebar:
   exclude: false
 ---
 
+每周自动生成，汇总本周 AI 行业重大事件与趋势分析。
 
 <div style="text-align: center; margin-top: 1em;">
 {{< hextra/hero-badge link="index.xml" >}}
