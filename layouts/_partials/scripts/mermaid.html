@@ -131,8 +131,8 @@
     clone.removeAttribute("width");
     clone.removeAttribute("height");
     clone.removeAttribute("style");
-    clone.style.width = "100%";
     clone.style.height = "auto";
+    clone.style.maxWidth = "100%";
     inner.appendChild(clone);
 
     // Zoom buttons.
@@ -189,14 +189,14 @@
 }
 #mm-inner {
   background: #fff; border-radius: 0.75rem; padding: 2rem;
-  min-width: 80vw; transform-origin: top center;
+  max-width: 90vw; transform-origin: top center;
   transition: transform 0.2s;
 }
 .dark #mm-inner { background: #1e293b; }
-#mm-inner svg { display: block; width: 100%; height: auto; }
+#mm-inner svg { display: block; height: auto; }
 @media (max-width: 768px) {
   #mm-toolbar { display: none; }
-  #mm-inner { min-width: 95vw; padding: 1rem; }
+  #mm-inner { padding: 1rem; }
 }
 /* Mermaid diagram container styling */
 .mermaid {
