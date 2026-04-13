@@ -102,44 +102,92 @@
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   });
 
-  // Click mermaid → fullscreen overlay.
+  // Click mermaid → fullscreen modal with zoom controls.
   document.addEventListener("click", (e) => {
     const el = e.target.closest(".mermaid");
-    if (!el || el.closest("#mermaid-overlay")) return;
-    const overlay = document.createElement("div");
-    overlay.id = "mermaid-overlay";
-    overlay.innerHTML = '<div id="mermaid-overlay-inner">' + el.innerHTML + '</div>';
-    document.body.appendChild(overlay);
-    overlay.addEventListener("click", () => overlay.remove());
+    if (!el || document.getElementById("mermaid-modal")) return;
+
+    const svg = el.querySelector("svg");
+    if (!svg) return;
+
+    const modal = document.createElement("div");
+    modal.id = "mermaid-modal";
+
+    // Close button
+    const closeBtn = document.createElement("button");
+    closeBtn.id = "mermaid-modal-close";
+    closeBtn.textContent = "✕";
+    closeBtn.onclick = () => modal.remove();
+
+    // Zoom controls (PC)
+    const controls = document.createElement("div");
+    controls.id = "mermaid-modal-controls";
+    let scale = 1;
+    const container = document.createElement("div");
+    container.id = "mermaid-modal-content";
+    const cloned = svg.cloneNode(true);
+    cloned.style.width = "100%";
+    cloned.style.height = "auto";
+    cloned.style.maxWidth = "none";
+    container.appendChild(cloned);
+
+    const updateScale = () => { cloned.style.transform = "scale(" + scale + ")"; cloned.style.transformOrigin = "center top"; };
+    [50, 75, 100, 150, 200].forEach(pct => {
+      const btn = document.createElement("button");
+      btn.className = "mermaid-zoom-btn" + (pct === 100 ? " active" : "");
+      btn.textContent = pct + "%";
+      btn.onclick = (ev) => { ev.stopPropagation(); scale = pct / 100; updateScale(); controls.querySelectorAll(".mermaid-zoom-btn").forEach(b => b.classList.remove("active")); btn.classList.add("active"); };
+      controls.appendChild(btn);
+    });
+
+    // Mobile: pinch zoom via touch-action
+    container.style.touchAction = "pinch-zoom";
+
+    modal.appendChild(closeBtn);
+    modal.appendChild(controls);
+    modal.appendChild(container);
+    document.body.appendChild(modal);
+
+    // Click backdrop to close
+    modal.addEventListener("click", (ev) => { if (ev.target === modal) modal.remove(); });
   });
 </script>
 
 <style>
-/* Click to fullscreen */
-.mermaid {
-  cursor: zoom-in;
+/* Click to open modal */
+.mermaid { cursor: zoom-in; }
+#mermaid-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.8);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-start;
+  padding: 1rem;
 }
-#mermaid-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: zoom-out;
-  padding: 2rem;
+#mermaid-modal-close {
+  position: absolute; top: 1rem; right: 1.5rem;
+  font-size: 1.5rem; color: #fff; background: none;
+  border: none; cursor: pointer; z-index: 10;
 }
-#mermaid-overlay-inner {
-  max-width: 95vw;
-  max-height: 90vh;
-  overflow: auto;
-  background: #fff;
-  border-radius: 0.75rem;
-  padding: 2rem;
+#mermaid-modal-controls {
+  display: flex; gap: 0.5rem; margin: 0.5rem 0 1rem;
 }
-.dark #mermaid-overlay-inner {
-  background: #1e293b;
+.mermaid-zoom-btn {
+  padding: 0.35rem 0.75rem; font-size: 0.8rem;
+  border: 1px solid #64748b; border-radius: 0.25rem;
+  background: transparent; color: #fff; cursor: pointer;
+}
+.mermaid-zoom-btn.active {
+  background: #3b82f6; border-color: #3b82f6;
+}
+#mermaid-modal-content {
+  flex: 1; overflow: auto; width: 100%;
+  display: flex; justify-content: center;
+  background: #fff; border-radius: 0.75rem; padding: 1.5rem;
+}
+.dark #mermaid-modal-content { background: #1e293b; }
+#mermaid-modal-content svg { transition: transform 0.2s; }
+@media (max-width: 768px) {
+  #mermaid-modal-controls { display: none; }
 }
 /* Mermaid diagram container styling */
 .mermaid {
