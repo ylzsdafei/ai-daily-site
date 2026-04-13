@@ -1,4 +1,5 @@
 # Hugo configuration file
+baseURL: https://ylzsdafei.github.io/ai-daily-site/
 title: AI 日报 v1.0.0
 
 timezone: Asia/Shanghai
