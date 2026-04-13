@@ -166,12 +166,18 @@ article details summary {
 article details summary:hover {
   color: #2563eb;
 }
+article details summary::marker,
+article details summary::-webkit-details-marker {
+  display: none;
+  content: "";
+}
 article details summary::before {
   content: "▶ ";
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-decoration: none;
   display: inline-block;
-  margin-right: 0.25rem;
+  margin-right: 0.35rem;
+  vertical-align: middle;
 }
 article details[open] summary::before {
   content: "▼ ";
