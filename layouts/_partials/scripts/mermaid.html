@@ -159,9 +159,14 @@ article details summary {
   background: none;
   border: none;
   user-select: none;
-  list-style: none;
+  list-style: none !important;
+  list-style-type: none !important;
   text-decoration: underline;
   text-underline-offset: 3px;
+  -webkit-appearance: none;
+}
+article details summary::-webkit-details-marker {
+  display: none !important;
 }
 article details summary:hover {
   color: #2563eb;
