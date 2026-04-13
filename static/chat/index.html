@@ -4,14 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI 日报 · 智能问答</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; }
 #header { padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #e2e8f0; font-weight: 600; font-size: 0.95rem; color: #1e293b; display: flex; align-items: center; gap: 0.5rem; }
 #header span { color: #3b82f6; }
 #messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; }
-.msg { max-width: 85%; padding: 0.75rem 1rem; border-radius: 1rem; font-size: 0.9rem; line-height: 1.6; word-break: break-word; white-space: pre-wrap; }
+.msg { max-width: 85%; padding: 0.75rem 1rem; border-radius: 1rem; font-size: 0.9rem; line-height: 1.6; word-break: break-word; }
 .msg.bot { align-self: flex-start; background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem 1rem 1rem 0.25rem; }
+.msg.bot h1,.msg.bot h2,.msg.bot h3 { font-size: 1rem; margin: 0.5rem 0 0.25rem; }
+.msg.bot p { margin: 0.25rem 0; }
+.msg.bot ul,.msg.bot ol { margin: 0.25rem 0 0.25rem 1.25rem; }
+.msg.bot li { margin: 0.15rem 0; }
+.msg.bot code { background: #f1f5f9; padding: 0.1rem 0.3rem; border-radius: 0.2rem; font-size: 0.85em; }
+.msg.bot a { color: #3b82f6; }
 .msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-radius: 1rem 1rem 0.25rem 1rem; }
 .msg.typing { color: #94a3b8; font-style: italic; }
 #input-area { padding: 0.75rem; background: #fff; border-top: 1px solid #e2e8f0; display: flex; gap: 0.5rem; }
@@ -23,6 +30,7 @@ body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; backgro
 body.dark { background: #0f172a; }
 body.dark #header { background: #1e293b; border-color: #334155; color: #e2e8f0; }
 body.dark .msg.bot { background: #1e293b; border-color: #334155; color: #e2e8f0; }
+body.dark .msg.bot code { background: #0f172a; }
 body.dark #input-area { background: #1e293b; border-color: #334155; }
 body.dark #input { background: #0f172a; border-color: #334155; color: #e2e8f0; }
 </style>
@@ -43,10 +51,14 @@ const input = document.getElementById("input");
 const sendBtn = document.getElementById("send");
 const history = [];
 
-function addMsg(text, cls) {
+function addMsg(content, cls, isMarkdown) {
   const d = document.createElement("div");
   d.className = "msg " + cls;
-  d.textContent = text;
+  if (isMarkdown) {
+    d.innerHTML = marked.parse(content);
+  } else {
+    d.textContent = content;
+  }
   msgEl.appendChild(d);
   msgEl.scrollTop = msgEl.scrollHeight;
   return d;
@@ -56,10 +68,10 @@ async function doSend() {
   const text = input.value.trim();
   if (!text) return;
   input.value = "";
-  addMsg(text, "user");
+  addMsg(text, "user", false);
   history.push({ role: "user", content: text });
   sendBtn.disabled = true;
-  const typing = addMsg("正在思考...", "bot typing");
+  const typing = addMsg("正在思考...", "bot typing", false);
   try {
     const res = await fetch(API, {
       method: "POST",
@@ -69,12 +81,11 @@ async function doSend() {
     const data = await res.json();
     const reply = data.reply || "抱歉，暂时无法回答。";
     typing.remove();
-    const clean = reply.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#{1,3}\s+/gm, "");
-    addMsg(clean, "bot");
+    addMsg(reply, "bot", true);
     history.push({ role: "assistant", content: reply });
   } catch(e) {
     typing.remove();
-    addMsg("网络错误，请稍后重试。", "bot");
+    addMsg("网络错误，请稍后重试。", "bot", false);
   }
   sendBtn.disabled = false;
   input.focus();
