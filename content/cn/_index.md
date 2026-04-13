@@ -39,9 +39,9 @@ AI 日报
 
 ## 本周周报
 
-{{< cards >}}
-  {{< card link="/blog/weekly/2026-w16/" title="第16周 AI周报" subtitle="真实交付、工具接入、入口重构、基础设施" icon="document-text" >}}
-{{< /cards >}}
+<div class="briefing-card-grid" style="grid-template-columns:1fr;">
+<a href="/ai-daily-site/blog/weekly/2026-w16/" class="briefing-card"><strong>第16周 AI周报</strong><br><small>科研Agent、模型集中、算力成本、经验复制</small></a>
+</div>
 
 ---
 
