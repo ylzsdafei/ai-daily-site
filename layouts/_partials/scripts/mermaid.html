@@ -102,26 +102,44 @@
     }).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
   });
 
-  // Click to toggle zoom on mermaid diagrams.
+  // Click mermaid → fullscreen overlay.
   document.addEventListener("click", (e) => {
     const el = e.target.closest(".mermaid");
-    if (!el) return;
-    el.classList.toggle("zoomed");
+    if (!el || el.closest("#mermaid-overlay")) return;
+    const overlay = document.createElement("div");
+    overlay.id = "mermaid-overlay";
+    overlay.innerHTML = '<div id="mermaid-overlay-inner">' + el.innerHTML + '</div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener("click", () => overlay.remove());
   });
 </script>
 
 <style>
-/* Click to zoom */
+/* Click to fullscreen */
 .mermaid {
   cursor: zoom-in;
-  transition: transform 0.3s ease;
 }
-.mermaid.zoomed {
-  transform: scale(2);
-  transform-origin: top left;
+#mermaid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: zoom-out;
-  z-index: 10;
-  position: relative;
+  padding: 2rem;
+}
+#mermaid-overlay-inner {
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: auto;
+  background: #fff;
+  border-radius: 0.75rem;
+  padding: 2rem;
+}
+.dark #mermaid-overlay-inner {
+  background: #1e293b;
 }
 /* Mermaid diagram container styling */
 .mermaid {
