@@ -1,190 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI 日报 · 在线对话</title>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+<title>AI 日报 · 智能问答</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f6f3ec; color: #161616; }
-body { display: flex; flex-direction: column; }
-
-header { background: #1c1e2e; color: #f6f3ec; padding: 14px 18px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
-header .badge { background: #c1372a; color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; }
-header .title { font-weight: 600; font-size: 15px; }
-header .status { margin-left: auto; font-size: 11px; opacity: 0.65; }
-
-#messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; background: #f6f3ec; }
-#messages::-webkit-scrollbar { width: 6px; }
-#messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
-
-.msg { padding: 10px 14px; border-radius: 12px; max-width: 90%; line-height: 1.55; font-size: 14px; word-wrap: break-word; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-.msg.user { background: #1f3a76; color: #fff; align-self: flex-end; border-bottom-right-radius: 2px; }
-.msg.bot { background: #fff; border: 1px solid #e3dfd1; align-self: flex-start; border-bottom-left-radius: 2px; }
-.msg.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; align-self: flex-start; border-bottom-left-radius: 2px; }
-
-.msg.bot p, .msg.error p { margin-bottom: 8px; }
-.msg.bot p:last-child, .msg.error p:last-child { margin-bottom: 0; }
-.msg.bot ul, .msg.bot ol { margin: 8px 0 8px 18px; }
-.msg.bot li { margin-bottom: 4px; }
-.msg.bot strong { color: #c1372a; }
-.msg.bot em { color: #1f3a76; }
-.msg.bot a { color: #1f3a76; text-decoration: underline; }
-.msg.bot a:hover { color: #c1372a; }
-.msg.bot h1, .msg.bot h2, .msg.bot h3 { margin: 10px 0 6px; color: #1c1e2e; }
-.msg.bot h1 { font-size: 16px; }
-.msg.bot h2 { font-size: 15px; }
-.msg.bot h3 { font-size: 14px; }
-.msg.bot blockquote { border-left: 3px solid #c1372a; padding-left: 10px; margin: 8px 0; color: #555; }
-.msg.bot pre { background: #1c1e2e; color: #f6f3ec; padding: 10px 12px; border-radius: 6px; overflow-x: auto; font-size: 12px; margin: 8px 0; }
-.msg.bot code { background: #eee9dd; padding: 2px 5px; border-radius: 3px; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; }
-.msg.bot pre code { background: transparent; padding: 0; color: inherit; }
-.msg.bot hr { border: none; border-top: 1px solid #e3dfd1; margin: 10px 0; }
-.msg.bot table { border-collapse: collapse; margin: 8px 0; font-size: 12px; }
-.msg.bot th, .msg.bot td { border: 1px solid #e3dfd1; padding: 4px 8px; }
-.msg.bot th { background: #eee9dd; font-weight: 600; }
-
-.hint { padding: 24px 18px; color: #888; font-size: 12px; text-align: center; line-height: 1.6; }
-.hint .lead { color: #1c1e2e; font-weight: 600; margin-bottom: 6px; font-size: 13px; }
-
-form { display: flex; gap: 8px; padding: 12px; border-top: 2px solid #1c1e2e; background: #fff; flex-shrink: 0; }
-input { flex: 1; padding: 10px 14px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.15s; background: #fff; color: #161616; }
-input:focus { border-color: #1f3a76; }
-button { padding: 10px 18px; background: #1c1e2e; color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: background 0.15s; }
-button:hover:not(:disabled) { background: #2d3147; }
-button:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.thinking { display: inline-block; color: #888; font-style: italic; }
-.thinking::after { content: '...'; animation: dots 1.4s steps(4, end) infinite; display: inline-block; width: 18px; text-align: left; }
-@keyframes dots { 0%, 20% { content: '.'; } 40% { content: '..'; } 60%, 100% { content: '...'; } }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; background: #f8fafc; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+.icon { font-size: 3rem; margin-bottom: 1rem; }
+h2 { font-size: 1.2rem; color: #1e293b; margin-bottom: 0.75rem; }
+p { font-size: 0.9rem; color: #64748b; line-height: 1.6; max-width: 280px; }
+.badge { display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem; background: #dbeafe; color: #1e40af; border-radius: 1rem; font-size: 0.8rem; font-weight: 500; }
 </style>
 </head>
 <body>
-<header>
-  <span class="badge">AI</span>
-  <span class="title">AI 日报 · 在线对话</span>
-  <span class="status" id="status">就绪</span>
-</header>
-
-<div id="messages">
-  <div class="hint">
-    <div class="lead">你好, 我是 AI 日报助手</div>
-    问我今天 / 历史早报里的任何内容, 我会基于全部条目给你答案
-  </div>
-</div>
-
-<form id="form" autocomplete="off">
-  <input id="input" placeholder="输入问题…" autocomplete="off" />
-  <button type="submit" id="send">发送</button>
-</form>
-
-<script>
-const conversation = [];
-const $msgs = document.getElementById('messages');
-const $form = document.getElementById('form');
-const $input = document.getElementById('input');
-const $send = document.getElementById('send');
-const $status = document.getElementById('status');
-
-if (window.marked) {
-  marked.setOptions({ breaks: true, gfm: true });
-}
-
-function renderMarkdown(text) {
-  if (text == null) return '';
-  try {
-    const html = window.marked ? marked.parse(String(text)) : String(text);
-    if (window.DOMPurify) {
-      return DOMPurify.sanitize(html);
-    }
-    return html;
-  } catch (e) {
-    return String(text)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
-  }
-}
-
-function addMsg(role, content, kind) {
-  const el = document.createElement('div');
-  let cls = 'msg';
-  if (kind === 'error') cls += ' error';
-  else if (role === 'user') cls += ' user';
-  else cls += ' bot';
-  el.className = cls;
-  if (role === 'user') {
-    el.textContent = content;
-  } else {
-    el.innerHTML = renderMarkdown(content);
-  }
-  $msgs.appendChild(el);
-  $msgs.scrollTop = $msgs.scrollHeight;
-  return el;
-}
-
-function setStatus(text) { $status.textContent = text; }
-
-function todayBeijingISO() {
-  // 同 main.go resolveDate 的语义: 北京时间 (Asia/Shanghai) 当天.
-  const fmt = new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Asia/Shanghai',
-    year: 'numeric', month: '2-digit', day: '2-digit'
-  });
-  return fmt.format(new Date()); // YYYY-MM-DD
-}
-
-$form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const text = $input.value.trim();
-  if (!text) return;
-  $input.value = '';
-  $send.disabled = true;
-  setStatus('思考中');
-
-  addMsg('user', text);
-  conversation.push({ role: 'user', content: text });
-
-  const placeholder = addMsg('assistant', '');
-  placeholder.innerHTML = '<span class="thinking">思考中</span>';
-
-  try {
-    const resp = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        issue_date: todayBeijingISO(),
-        messages: conversation.map(m => ({ role: m.role, content: m.content }))
-      })
-    });
-    const data = await resp.json().catch(() => ({}));
-    if (data && data.reply) {
-      placeholder.className = 'msg bot';
-      placeholder.innerHTML = renderMarkdown(data.reply);
-      conversation.push({ role: 'assistant', content: data.reply });
-      setStatus('就绪');
-    } else if (data && data.error) {
-      placeholder.className = 'msg error';
-      placeholder.innerHTML = renderMarkdown('**出错了** ❌\n\n' + data.error);
-      setStatus('错误');
-    } else {
-      placeholder.className = 'msg error';
-      placeholder.innerHTML = '[空响应]';
-      setStatus('错误');
-    }
-  } catch (err) {
-    placeholder.className = 'msg error';
-    placeholder.innerHTML = '[网络错误] ' + (err && err.message ? err.message : err);
-    setStatus('错误');
-  } finally {
-    $send.disabled = false;
-    $input.focus();
-  }
-});
-
-$input.focus();
-</script>
+<div class="icon">🤖</div>
+<h2>智能问答即将上线</h2>
+<p>AI 日报智能助手正在开发中，上线后可基于日报/周报内容和实时信息为你解答问题。</p>
+<span class="badge">预计 v1.0.2 上线</span>
 </body>
 </html>
