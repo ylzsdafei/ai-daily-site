@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-14/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-15/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -29,7 +29,8 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>OpenAI 收购理财初创 Hiro，ChatGPT 悄然逼近财务规划</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-15/" class="briefing-card"><strong>AI资讯日报 2026/4/15</strong><br><small>Anthropic 连发 Claude Sonnet 4.6、Opus 4.6，1 亿美元砸伙伴网络</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>Anthropic 连出三拳，Project Glasswing死盯软件安全、收购Vercept强化Claude电脑操作、Claude打通三大Office应用</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>Meta 造出“AI 版扎克伯格”直接下场管员工，Anthropic Mythos 被推入银行测试</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
