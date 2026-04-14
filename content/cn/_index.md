@@ -29,7 +29,7 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>Claude 已打通三大 Office 办公应用，Anthropic“Project Glasswing”又引安全圈警觉</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>OpenAI 联手 Cloudflare 把 GPT-5.4 和 Codex 接入 Agent Cloud</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>Meta 造出“AI 版扎克伯格”直接下场管员工，Anthropic Mythos 被推入银行测试</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
