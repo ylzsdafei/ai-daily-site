@@ -29,7 +29,7 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-16/" class="briefing-card"><strong>AI资讯日报 2026/4/16</strong><br><small>Anthropic 连开源 Skills 又放出 Claude Cookbooks</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-16/" class="briefing-card"><strong>AI资讯日报 2026/4/16</strong><br><small>OpenAI 估值冲上8520亿美元、酝酿ChatGPT新定价和广告，上市前商业化突然提速 Anthropic 估值上升逼得OpenAI投资人重排座次</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-15/" class="briefing-card"><strong>AI资讯日报 2026/4/15</strong><br><small>Anthropic 连发 Claude Code routines 和电脑控制，Claude 会修 bug 会点屏</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>Anthropic 连出三拳，Project Glasswing死盯软件安全、收购Vercept强化Claude电脑操作、Claude打通三大Office应用</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>Meta 造出“AI 版扎克伯格”直接下场管员工，Anthropic Mythos 被推入银行测试</small></a>
