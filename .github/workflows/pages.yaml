@@ -63,12 +63,14 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_ENV: production
         run: |
+          BASE_URL="${{ vars.APP_BASE_URL }}"
+          if [ -z "$BASE_URL" ]; then
+            BASE_URL="${{ steps.pages.outputs.base_url }}"
+          fi
           hugo \
             --gc --minify \
-            --baseURL "${{ vars.APP_BASE_URL }}/"
-          echo "url1: ${{ vars.APP_BASE_URL }}"
-          echo "url2: ${{ env.APP_BASE_URL }}"
-          echo "url3: ${{ steps.pages.outputs.base_url }}"
+            --baseURL "${BASE_URL}/"
+          echo "base_url: ${BASE_URL}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
