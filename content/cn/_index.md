@@ -19,7 +19,9 @@ AI 日报
 
 <div style="text-align: center; margin-bottom: 3rem;">
 <!-- TODAY_LINK_START -->
-<a href="/2026/2026-04/2026-04-13/" class="hx-inline-block hx-rounded-lg hx-border hx-border-gray-200 hx-px-6 hx-py-3 hx-font-semibold hx-text-gray-700 hover:hx-bg-gray-100 dark:hx-border-neutral-700 dark:hx-text-neutral-300 dark:hover:hx-bg-neutral-800">查看今日早报 →</a>
+<div style="text-align:center;margin-bottom:2rem;">
+<a href="/2026/2026-04/2026-04-19/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+</div>
 <!-- TODAY_LINK_END -->
 </div>
 
@@ -28,11 +30,12 @@ AI 日报
 ## 最近内容
 
 <!-- LATEST_6_CARDS_START -->
-{{< cards cols="3" >}}
-  {{< card link="/2026/2026-04/2026-04-13/" title="AI资讯日报 2026/4/13" subtitle="谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭 台积电或连四季利润新高，AI需求旺到爆，MiniMax-M2.7双RTX..." >}}
-  {{< card link="/2026/2026-04/2026-04-12/" title="AI资讯日报 2026/4/12" subtitle="Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic改写增长故事 xAI 起诉科罗拉多州硬刚 A..." >}}
-  {{< card link="/2026/2026-04/2026-04-11/" title="AI资讯日报 2026/4/11" subtitle="Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界，3D 生产门槛被改写 星巴克推进门店 AI 聊..." >}}
-{{< /cards >}}
+<div class="briefing-card-grid">
+<a href="/2026/2026-04/2026-04-19/" class="briefing-card"><strong>AI资讯日报 2026/4/19</strong><br><small>Anthropic 推出 Claude Design，中文实测三轮对话做出可交互原型，AI 设计协作直冲生产级 Google 连发 AI Agent 三板斧</small></a>
+<a href="/2026/2026-04/2026-04-13/" class="briefing-card"><strong>AI资讯日报 2026/4/13</strong><br><small>谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭 台积电或连四季利润新高，AI需求旺到爆，MiniMax-M2.</small></a>
+<a href="/2026/2026-04/2026-04-12/" class="briefing-card"><strong>AI资讯日报 2026/4/12</strong><br><small>Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI</small></a>
+<a href="/2026/2026-04/2026-04-11/" class="briefing-card"><strong>AI资讯日报 2026/4/11</strong><br><small>Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界</small></a>
+</div>
 <!-- LATEST_6_CARDS_END -->
 
 ---
