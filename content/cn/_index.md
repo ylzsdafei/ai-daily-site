@@ -29,7 +29,7 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
-<a href="/ai-daily-site/2026/2026-04/2026-04-17/" class="briefing-card"><strong>AI资讯日报 2026/4/17</strong><br><small>OpenAI 推 GPT-Rosalind 杀入生命科学，ChatGPT 女性用户反超男性</small></a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-17/" class="briefing-card"><strong>AI资讯日报 2026/4/17</strong><br><small>Anthropic 连发 Claude Opus 4.7 并上线 Amazon Bedrock</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-16/" class="briefing-card"><strong>AI资讯日报 2026/4/16</strong><br><small>台积电利润大增58%、台湾股市总市值反超英国，ASML与台积电齐喊AI投资热潮未退 Anthropic 上调高频用户价格并在部分 Claude 场景强制验身份</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-15/" class="briefing-card"><strong>AI资讯日报 2026/4/15</strong><br><small>Anthropic 连发 Claude Code routines 和电脑控制，Claude 会修 bug 会点屏</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-14/" class="briefing-card"><strong>AI资讯日报 2026/4/14</strong><br><small>Anthropic 连出三拳，Project Glasswing死盯软件安全、收购Vercept强化Claude电脑操作、Claude打通三大Office应用</small></a>
