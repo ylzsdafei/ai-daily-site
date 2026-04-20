@@ -1,0 +1,10 @@
+# Syncthing ignore for ai-daily-site claude-4 to Mac mirror.
+
+.git
+public
+resources
+node_modules
+.hugo_build.lock
+hugo.yaml.bak
+*.bak
+.DS_Store
