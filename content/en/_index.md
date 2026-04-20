@@ -28,9 +28,12 @@ AI 日报
 ## 最近内容
 
 <!-- LATEST_6_CARDS_START -->
-{{< card link="/en/2026-04/2026-04-13" title="AI News Daily 2026/04/13" subtitle="谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭 台积电或连四季利润新高，AI需求旺到爆，MiniMax-M2.7双RTX PRO 6000跑出高吞吐 中国启动全" icon="calendar" >}}
-  {{< card link="/en/2026-04/2026-04-12" title="AI News Daily 2026/04/12" subtitle="Anthropic 企业 AI 支出逼近甚至有望反超 OpenAI，CoreWeave 转身押注 Anthropic改写增长故事 xAI 起诉科罗拉多州硬刚 AI 新法违宪，五角大楼敏感机密“安全 A" icon="calendar" >}}
-  {{< card link="/en/2026-04/2026-04-11" title="AI News Daily 2026/04/11" subtitle="Overworld 推出 Waypoint-1.5，普通 Mac 和 Windows 也能生成 AI 3D 世界，3D 生产门槛被改写 星巴克推进门店 AI 聊天机器人，哈佛商学院扩大 AI 进 MB" icon="calendar" >}}
+{{< card link="/en/2026-04/2026-04-19" title="AI News Daily 2026/04/19" subtitle="OpenAI 高层与研究骨干接连离开还在收缩副线，开源 openai-agents-python 押注多 Agent 自救 Anthropic 连推 Claude Design 抢视觉协作，CEO 高" icon="calendar" >}}
+  {{< card link="/en/2026-04/2026-04-17" title="AI News Daily 2026/04/17" subtitle="OpenAI 推 GPT-Rosalind 杀入生命科学，ChatGPT 女性用户反超男性，广告变现也加速试水 Anthropic 连发 Claude Opus 4.7 与 Codex 桌面新版，编码" icon="calendar" >}}
+  {{< card link="/en/2026-04/2026-04-16" title="AI News Daily 2026/04/16" subtitle="台积电利润大增58%、台湾股市总市值反超英国，ASML与台积电齐喊AI投资热潮未退 Anthropic 上调高频用户价格并在部分 Claude 场景强制验身份，越火越贵的 AI 开始收紧闸门 Deep" icon="calendar" >}}
+  {{< card link="/en/2026-04/2026-04-15" title="AI News Daily 2026/04/15" subtitle="Anthropic 连发 Claude Code routines 和电脑控制，Claude 会修 bug 会点屏，Agent 从写代码杀入真实操作 OpenAI 扩展 Trusted Access " icon="calendar" >}}
+  {{< card link="/en/2026-04/2026-04-14" title="AI News Daily 2026/04/14" subtitle="Anthropic 连出三拳，Project Glasswing死盯软件安全、收购Vercept强化Claude电脑操作、Claude打通三大Office应用 OpenAI 双线突袭，备忘录曝光新模型" icon="calendar" >}}
+  {{< card link="/en/2026-04/2026-04-13" title="AI News Daily 2026/04/13" subtitle="谷歌 AI 广告机器改写搜索规则，品牌方收入最高增80%，苹果被指失意却可能靠生态逆袭 台积电或连四季利润新高，AI需求旺到爆，MiniMax-M2.7双RTX PRO 6000跑出高吞吐 中国启动全" icon="calendar" >}}
 <!-- LATEST_6_CARDS_END -->
 
 ---
