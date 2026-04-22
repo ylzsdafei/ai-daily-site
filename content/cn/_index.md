@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-22/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-23/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -29,12 +29,12 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
+<a href="/ai-daily-site/2026/2026-04/2026-04-23/" class="briefing-card"><strong>AI资讯日报 2026/4/23</strong><br><small>OpenAI 连发 Workspace Agents 和 Responses API 长连接优化</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-22/" class="briefing-card"><strong>AI资讯日报 2026/4/22</strong><br><small>OpenAI 连发 ChatGPT Images 2.0 与企业级 Codex Labs，内测对话广告</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-21/" class="briefing-card"><strong>AI资讯日报 2026/4/21</strong><br><small>Amazon联手Anthropic直冲5吉瓦级算力，Claude Opus 4.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-20/" class="briefing-card"><strong>AI资讯日报 2026/4/20</strong><br><small>Anthropic Opus 4.7 被曝实际 token 消耗明显高于 4.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-19/" class="briefing-card"><strong>AI资讯日报 2026/4/19</strong><br><small>OpenAI 高层与研究骨干接连离开还在收缩副线</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-17/" class="briefing-card"><strong>AI资讯日报 2026/4/17</strong><br><small>Anthropic 连发 Claude Opus 4.7 并上线 Amazon Bedrock</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-16/" class="briefing-card"><strong>AI资讯日报 2026/4/16</strong><br><small>台积电利润大增58%、台湾股市总市值反超英国，ASML与台积电齐喊AI投资热潮未退 Anthropic 上调高频用户价格并在部分 Claude 场景强制验身份</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
