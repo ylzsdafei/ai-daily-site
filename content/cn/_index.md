@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-24/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-25/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -29,12 +29,12 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
+<a href="/ai-daily-site/2026/2026-04/2026-04-25/" class="briefing-card"><strong>AI资讯日报 2026/4/25</strong><br><small>Google 豪掷最高400亿美元押注 Anthropic，OpenAI 自认 AI 进展意外变慢，巨头路线分化加剧 OpenAI 上线 GPT-5.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-24/" class="briefing-card"><strong>AI资讯日报 2026/4/24</strong><br><small>OpenAI 连发 GPT-5.5、系统卡和生物安全悬赏，AI 大模型发布彻底变成软件周更 Google 自曝 75% 新代码由 AI 参与编写</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-23/" class="briefing-card"><strong>AI资讯日报 2026/4/23</strong><br><small>OpenAI 连发 Workspace Agents 和 Responses API 长连接优化</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-22/" class="briefing-card"><strong>AI资讯日报 2026/4/22</strong><br><small>OpenAI 连发 ChatGPT Images 2.0 与企业级 Codex Labs，内测对话广告</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-21/" class="briefing-card"><strong>AI资讯日报 2026/4/21</strong><br><small>Amazon联手Anthropic直冲5吉瓦级算力，Claude Opus 4.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-20/" class="briefing-card"><strong>AI资讯日报 2026/4/20</strong><br><small>Anthropic Opus 4.7 被曝实际 token 消耗明显高于 4.</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-19/" class="briefing-card"><strong>AI资讯日报 2026/4/19</strong><br><small>OpenAI 高层与研究骨干接连离开还在收缩副线</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
