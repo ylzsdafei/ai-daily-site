@@ -1,3 +1,0 @@
-{{ if or (.HasShortcode "audio-player") (findRE "audio-player" .Content) }}
-<link rel="stylesheet" href="{{ "css/audio-player.css" | relURL }}">
-{{ end }}
