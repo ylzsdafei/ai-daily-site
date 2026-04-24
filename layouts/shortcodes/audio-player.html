@@ -1,0 +1,23 @@
+{{- $src := .Get "src" -}}
+{{- $title := .Get "title" | default "AI 早报·每日点评" -}}
+{{- $duration := .Get "duration" -}}
+{{- /* Ensure audio-player.css is loaded exactly once per page (shortcode is self-contained; does not rely on head-end partial wiring). */ -}}
+{{- if not (.Page.Store.Get "audio-player-css-loaded") -}}
+  {{- .Page.Store.Set "audio-player-css-loaded" true -}}
+  {{- with resources.Get "css/audio-player.css" -}}
+    {{- $css := . | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+  {{- end -}}
+{{- end }}
+<div class="audio-player-card">
+  <div class="audio-player-meta">
+    <div class="audio-player-icon" aria-hidden="true">🎧</div>
+    <div class="audio-player-info">
+      <div class="audio-player-title">{{ $title }}</div>
+      {{- with $duration }}<div class="audio-player-duration">{{ . }}</div>{{- end }}
+    </div>
+  </div>
+  <audio controls preload="metadata" src="{{ $src | relURL }}">
+    您的浏览器不支持 audio 元素。可直接下载：<a href="{{ $src | relURL }}">{{ $src }}</a>
+  </audio>
+</div>
