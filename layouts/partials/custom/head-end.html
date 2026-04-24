@@ -511,6 +511,9 @@ document.addEventListener('DOMContentLoaded', function() {
 {{- end }}
 {{ "<!-- LEAVING partial seo-schema.html -->" | safeHTML }}
 
+{{/* v1.1: insight-canvas — 按需加载 (只有含 insight-canvas shortcode / marker 的页面才注入 CSS+JS). audio-player 的 CSS 由 shortcode 本身内联，无需在这里 include. */}}
+{{ partial "scripts/insight-canvas.html" . }}
+
 <style>
 /* Blog (weekly report) title — left align instead of center */
 .hextra-blog-post-title {

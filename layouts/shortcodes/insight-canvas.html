@@ -1,0 +1,65 @@
+{{- /*
+  insight-canvas shortcode — v1.1
+  用法:
+    {{< insight-canvas json_path="/data/canvas/2026-04-24.json" title="2026-04-24 AI 洞察图谱" >}}
+
+  参数:
+    json_path (必填) —— 相对 baseURL 的 JSON 路径, 将由 JS fetch
+    title    (可选) —— 卡片标题, 默认 "AI 洞察图谱"
+
+  视觉方案: Linear.app / Apple developer docs 风
+  - 预览: 330px 高卡片, 极淡 dot-grid 背景
+  - lightbox: 1200x800 居中弹窗, 顶栏工具 (zoom-/zoom+/fit/close) + 底栏 legend
+*/ -}}
+{{- $json := .Get "json_path" -}}
+{{- $title := .Get "title" | default "AI 洞察图谱" -}}
+{{- if not $json -}}
+  {{- errorf "[insight-canvas] json_path is required (called at %s)" .Position -}}
+{{- end -}}
+<div class="insight-canvas" data-src="{{ $json | relURL }}" data-title="{{ $title }}">
+  <div class="insight-canvas-header">
+    <div class="insight-canvas-heading">
+      <span class="insight-canvas-eyebrow">Insight Graph</span>
+      <h3>{{ $title }}</h3>
+    </div>
+    <button type="button" class="insight-canvas-expand" aria-label="放大查看">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>
+      <span>放大</span>
+    </button>
+  </div>
+  <div class="insight-canvas-preview" aria-live="polite" role="img" aria-label="{{ $title }}">
+    <div class="insight-canvas-loading">正在加载洞察图谱…</div>
+  </div>
+  <dialog class="insight-canvas-lightbox" aria-label="{{ $title }}（全屏）">
+    <header class="insight-canvas-toolbar">
+      <div class="insight-canvas-toolbar-left">
+        <span class="insight-canvas-eyebrow">Insight Graph</span>
+        <h4 class="insight-canvas-toolbar-title">{{ $title }}</h4>
+        <span class="insight-canvas-toolbar-meta" data-role="meta"></span>
+      </div>
+      <div class="insight-canvas-toolbar-actions">
+        <button type="button" class="ic-tool-btn" data-action="zoom-out" aria-label="缩小">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <button type="button" class="ic-tool-btn" data-action="zoom-in" aria-label="放大">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <button type="button" class="ic-tool-btn" data-action="fit" aria-label="复位">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V3h4"/><path d="M21 7V3h-4"/><path d="M3 17v4h4"/><path d="M21 17v4h-4"/></svg>
+        </button>
+        <span class="ic-tool-divider" aria-hidden="true"></span>
+        <button type="button" class="ic-tool-btn ic-tool-close" data-action="close" aria-label="关闭">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </header>
+    <div class="insight-canvas-fullview" role="presentation"></div>
+    <footer class="insight-canvas-legend" aria-label="图例">
+      <span class="ic-legend-item" data-layer="0"><span class="ic-legend-dot ic-legend-dot-0"></span>主题</span>
+      <span class="ic-legend-item" data-layer="1"><span class="ic-legend-dot ic-legend-dot-1"></span>关键信号</span>
+      <span class="ic-legend-item" data-layer="2"><span class="ic-legend-dot ic-legend-dot-2"></span>趋势</span>
+      <span class="ic-legend-item" data-layer="3"><span class="ic-legend-dot ic-legend-dot-3"></span>机会 / 风险</span>
+      <span class="ic-legend-item" data-layer="4"><span class="ic-legend-dot ic-legend-dot-4"></span>行动</span>
+    </footer>
+  </dialog>
+</div>
