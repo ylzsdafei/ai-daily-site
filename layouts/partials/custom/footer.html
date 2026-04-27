@@ -6,11 +6,11 @@
                 (dict "id" "privacy-policy" "title" "隐私政策")
                 (dict "id" "terms-of-service" "title" "服务条款")
             -}}
-    
+
             {{- /* 遍历列表，我们给当前遍历的字典起个名字叫 $page_dict */ -}}
             {{- range $page_dict := $pages }}
                 {{- $path := path.Join .Page.Language.Lang $page_dict.id -}}
-    
+
                 {{- /* 只用 with 来检查页面是否存在并获取链接，但不使用它的标题 */ -}}
                 {{- with site.GetPage $path -}}
                     <li><a href="{{ .RelPermalink }}">{{ $page_dict.title }}</a></li>
@@ -25,3 +25,86 @@
         </div>
     </div>
 </div>
+
+{{/* 周报链接拦截: 点击未生成的周报 (/blog/weekly/{Y}-w{NN}/) 时, 弹模态框
+     提示"周日 22:00 发布", 不跳到 404 页. fetch HEAD 检查存在性, 200 →
+     跳转, 否则展示模态框. 中键/cmd+click/shift+click 不拦截 (尊重用户意图). */}}
+<script>
+(function () {
+  var WEEKLY_RE = /\/blog\/weekly\/(\d{4})-w(\d{1,2})\/?$/i;
+
+  function showWeeklyPendingModal(weekNum) {
+    if (document.getElementById('weekly-pending-modal')) return;
+    var bg = document.createElement('div');
+    bg.id = 'weekly-pending-modal';
+    bg.style.cssText =
+      'position:fixed;inset:0;background:rgba(0,0,0,0.55);display:flex;' +
+      'align-items:center;justify-content:center;z-index:99999;' +
+      'backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);';
+    bg.innerHTML =
+      '<div style="background:#fff;padding:32px 28px;border-radius:14px;' +
+      'max-width:420px;width:88%;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);' +
+      "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;" +
+      'color:#1f2937;line-height:1.65;">' +
+      '<h3 style="margin:0 0 14px;font-size:20px;font-weight:600;">' +
+      '📅 第 ' + weekNum + ' 周周报尚未发布</h3>' +
+      '<p style="margin:0 0 12px;color:#4b5563;font-size:15px;">' +
+      '本周周报每周日 ' +
+      '<span style="background:#fef3c7;padding:2px 8px;border-radius:4px;color:#92400e;font-size:14px;font-weight:500;">22:00 北京时间</span> ' +
+      '汇总当周 7 期日报后自动发布。</p>' +
+      '<p style="margin:0 0 22px;color:#4b5563;font-size:15px;">' +
+      '当前周报还在等待生成，请稍后再来查看。</p>' +
+      '<div style="text-align:right;">' +
+      '<button id="weekly-modal-close" style="background:#3b82f6;color:#fff;' +
+      'border:none;padding:9px 22px;border-radius:6px;font-size:14px;' +
+      'font-weight:500;cursor:pointer;">我知道了</button>' +
+      '</div></div>';
+    document.body.appendChild(bg);
+    function close() {
+      if (bg.parentNode) bg.parentNode.removeChild(bg);
+      document.removeEventListener('keydown', escClose);
+    }
+    function escClose(ev) { if (ev.key === 'Escape') close(); }
+    bg.addEventListener('click', function (ev) { if (ev.target === bg) close(); });
+    bg.querySelector('#weekly-modal-close').addEventListener('click', close);
+    document.addEventListener('keydown', escClose);
+  }
+
+  function bindWeeklyLinks() {
+    var anchors = document.querySelectorAll('a[href]');
+    for (var i = 0; i < anchors.length; i++) {
+      var a = anchors[i];
+      if (a.dataset.weeklyGuarded === '1') continue;
+      var href = a.getAttribute('href');
+      if (!href || !WEEKLY_RE.test(href)) continue;
+      a.dataset.weeklyGuarded = '1';
+      a.addEventListener('click', function (ev) {
+        if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button !== 0) return;
+        var link = ev.currentTarget;
+        var m = link.getAttribute('href').match(WEEKLY_RE);
+        if (!m) return;
+        ev.preventDefault();
+        var fullUrl = link.href; // 浏览器已解析为绝对 URL
+        fetch(fullUrl, { method: 'HEAD' })
+          .then(function (resp) {
+            if (resp.ok) {
+              window.location.href = fullUrl;
+            } else {
+              showWeeklyPendingModal(parseInt(m[2], 10));
+            }
+          })
+          .catch(function () {
+            // 网络/CORS 错误时直接跳, 让浏览器处理.
+            window.location.href = fullUrl;
+          });
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindWeeklyLinks);
+  } else {
+    bindWeeklyLinks();
+  }
+})();
+</script>

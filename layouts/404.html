@@ -1,59 +1,13 @@
 <!doctype html>
-<html lang="zh-cn">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="页面不存在 — AI 日报">
-<meta name="keywords" content="404,AI日报,周报">
-<title>页面不存在 — AI 日报</title>
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-         max-width: 640px; margin: 80px auto; padding: 0 24px; color: #1f2937; line-height: 1.7; }
-  h1 { font-size: 28px; margin: 0 0 16px; }
-  p { margin: 12px 0; color: #4b5563; }
-  code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 90%; }
-  a { color: #2563eb; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .badge { display: inline-block; background: #fef3c7; padding: 2px 10px;
-           border-radius: 4px; color: #92400e; font-size: 14px; font-weight: 500; }
-  .nav { margin-top: 32px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 14px; }
-  .nav a { margin-right: 20px; }
-</style>
+<meta name="description" content="可定博客的 404 错误页面，当您看到这个页面，表示您的访问出错，这个错误是您打开的页面不存在，请确认您输入的地址是正确的!虽然你访问的页面找不回来了，但是我们可以一起寻找失踪宝贝!" />
+<meta name="keywords" content="404,404 错误页面,可定博客,一起寻找失踪宝贝,404 公益计划" />
+<title>404-寻找失踪宝贝</title>
 </head>
 <body>
-<div id="content">页面加载中…</div>
-<script>
-(function () {
-  var path = window.location.pathname;
-  // 匹配 /blog/weekly/2026-w18/ 形式 (站点部署在 /ai-daily-site/ 子路径下也兼容)
-  var weeklyMatch = path.match(/\/blog\/weekly\/(\d{4})-w(\d{1,2})\/?$/i);
-  var content = document.getElementById('content');
-  var rootHref = "{{ "" | absURL }}";
-  var blogHref = "{{ "blog/" | absURL }}";
-  if (weeklyMatch) {
-    var weekNum = parseInt(weeklyMatch[2], 10);
-    content.innerHTML =
-      '<h1>📅 第 ' + weekNum + ' 周周报尚未发布</h1>' +
-      '<p>本周周报每周日 <span class="badge">22:00 北京时间</span> 汇总当周 7 期日报后自动发布。</p>' +
-      '<p>当前页面所对应的周报还在等待生成，请稍后再来查看。</p>' +
-      '<div class="nav">' +
-      '<a href="' + blogHref + '">📚 所有周报</a>' +
-      '<a href="' + rootHref + '">🏠 返回首页</a>' +
-      '</div>';
-    document.title = '第 ' + weekNum + ' 周周报尚未发布 — AI 日报';
-  } else {
-    content.innerHTML =
-      '<h1>页面不存在</h1>' +
-      '<p>抱歉，您访问的页面 <code>' + path + '</code> 找不到。</p>' +
-      '<div class="nav">' +
-      '<a href="' + rootHref + '">🏠 返回首页</a>' +
-      '<a href="' + blogHref + '">📚 所有周报</a>' +
-      '</div>';
-  }
-})();
-</script>
-<!-- 腾讯公益: 寻找失踪宝贝 (历史保留, 隐藏不影响用户体验) -->
 <p style="display:none">你访问的页面找不回来了，但是我们可以一起寻找失踪宝贝</p>
 <p style="display:none">
 相关组织：
