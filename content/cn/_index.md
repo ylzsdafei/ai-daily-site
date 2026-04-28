@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-04/2026-04-28/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-04/2026-04-29/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -29,12 +29,12 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
+<a href="/ai-daily-site/2026/2026-04/2026-04-29/" class="briefing-card"><strong>AI资讯日报 2026/4/29</strong><br><small>OpenAI 模型与 Codex 杀入 Amazon Bedrock（亚马逊大模型平台），Managed Agents 同步登陆 AWS</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-28/" class="briefing-card"><strong>AI资讯日报 2026/4/28</strong><br><small>OpenAI 与 Microsoft 重写协议、独家与 AGI 条款双双删除</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-27/" class="briefing-card"><strong>AI资讯日报 2026/4/27</strong><br><small>GPT-5.5 基准测试领先却更贵且幻觉仍明显</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-26/" class="briefing-card"><strong>AI资讯日报 2026/4/26</strong><br><small>Anthropic 一天连发 Claude Opus 4.7、Sonnet 4.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-25/" class="briefing-card"><strong>AI资讯日报 2026/4/25</strong><br><small>Google 豪掷最高400亿美元押注 Anthropic，OpenAI 自认 AI 进展意外变慢，巨头路线分化加剧 OpenAI 上线 GPT-5.</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-24/" class="briefing-card"><strong>AI资讯日报 2026/4/24</strong><br><small>OpenAI 连发 GPT-5.5、系统卡和生物安全悬赏，AI 大模型发布彻底变成软件周更 Google 自曝 75% 新代码由 AI 参与编写</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-23/" class="briefing-card"><strong>AI资讯日报 2026/4/23</strong><br><small>OpenAI 连发 Workspace Agents 和 Responses API 长连接优化</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
