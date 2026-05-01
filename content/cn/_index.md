@@ -19,7 +19,7 @@ AI 日报
 
 <!-- TODAY_LINK_START -->
 <div style="text-align:center;margin-bottom:2rem;">
-<a href="/ai-daily-site/2026/2026-05/2026-05-01/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
+<a href="/ai-daily-site/2026/2026-05/2026-05-02/" style="display:inline-block;padding:0.75rem 2rem;background:#3b82f6;color:#fff;border-radius:0.5rem;font-weight:600;text-decoration:none;font-size:1.05rem;transition:background 0.2s;">查看今日早报 →</a>
 </div>
 <!-- TODAY_LINK_END -->
 
@@ -29,12 +29,12 @@ AI 日报
 
 <!-- LATEST_6_CARDS_START -->
 <div class="briefing-card-grid">
+<a href="/ai-daily-site/2026/2026-05/2026-05-02/" class="briefing-card"><strong>AI资讯日报 2026/5/2</strong><br><small>科技巨头今年AI支出飙到7250亿美元，五角大楼联手Nvidia、Microsoft、AWS把AI塞进机密网络 Anthropic上线Claude</small></a>
 <a href="/ai-daily-site/2026/2026-05/2026-05-01/" class="briefing-card"><strong>AI资讯日报 2026/5/1</strong><br><small>Microsoft 财报亮剑，AI 业务同比暴增123%</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-30/" class="briefing-card"><strong>AI资讯日报 2026/4/30</strong><br><small>OpenAI 落地 AWS、扩建 Stargate（超大规模数据中心计划），微软独家算力松动</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-29/" class="briefing-card"><strong>AI资讯日报 2026/4/29</strong><br><small>OpenAI 模型与 Codex 杀入 Amazon Bedrock（亚马逊大模型平台），Managed Agents 同步登陆 AWS</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-28/" class="briefing-card"><strong>AI资讯日报 2026/4/28</strong><br><small>OpenAI 与 Microsoft 重写协议、独家与 AGI 条款双双删除</small></a>
 <a href="/ai-daily-site/2026/2026-04/2026-04-27/" class="briefing-card"><strong>AI资讯日报 2026/4/27</strong><br><small>GPT-5.5 基准测试领先却更贵且幻觉仍明显</small></a>
-<a href="/ai-daily-site/2026/2026-04/2026-04-26/" class="briefing-card"><strong>AI资讯日报 2026/4/26</strong><br><small>Anthropic 一天连发 Claude Opus 4.7、Sonnet 4.</small></a>
 </div>
 <!-- LATEST_6_CARDS_END -->
 
